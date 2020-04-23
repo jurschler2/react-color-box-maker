@@ -22,7 +22,7 @@ const NewBoxForm = ({addBox}) => {
       [name]: value
     }));
   };
-  // end handleChange
+  
 
   return (
     <form onSubmit={handleSubmit}>

@@ -1,16 +1,19 @@
 import React from "react";
 
 
-function Box({ id, width, height, backgroundColor, removeBox}) {
+function Box({ id, width, height, backgroundColor, removeBox }) {
 
-  const style = {width: `${width}px`, height: `${height}px`, backgroundColor: backgroundColor}
-  return(
-    <div id={id}>
-    <div style={style} id={id}>
+  function handleRemove() {
+    removeBox(id);
+  }
+  const boxStyle = { width: `${width}px`, height: `${height}px`, backgroundColor }
+  return (
+    <div id={id} data-testid={`box-element-${id}`}>
+      <div style={boxStyle} id={id}>
+      </div>
+      <button onClick={handleRemove}>Delete this box!</button>
     </div>
-    <button id={id} onClick={()=> removeBox(id)}>X</button>
-    </div>
-  )
+  );
 
 }
 

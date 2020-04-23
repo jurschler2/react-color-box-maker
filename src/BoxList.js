@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NewBoxForm from "./NewBoxForm";
 import Box from "./Box";
-import uuid from "uuid/v4";
+import { v4 as uuid } from 'uuid';
 
 function BoxList() {
   const [boxes, setBoxes] = useState([]);
@@ -9,7 +9,7 @@ function BoxList() {
   const renderBoxes = () => {
 
     return (
-      <div className="boxes">
+      <div className="boxes" data-testid="boxes-container">
         {boxes.map(box => <Box id={box.id} 
                                key={box.id}
                                width={box.width} 
@@ -19,26 +19,21 @@ function BoxList() {
       </div>
     );
   };
-  // end renderBoxes
+
 
   /** Add new box object to the boxlist. */
   const addBox = box => {
     let newBox = { ...box, id: uuid() };
     setBoxes(boxes => [...boxes, newBox]);
   };
-  // end addBox
+  
 
   /** Remove a box object to the boxlist. */
-  const removeBox = (key) => {
-    console.log("key", key)
-    // console.log("boxes", boxes[0].id)
-    const boxesCopy = boxes.filter((b)=> b.id !== key);
-    console.log("boxes copy", boxesCopy)
+  const removeBox = (boxID) => {
+    
+    const boxesCopy = boxes.filter((b)=> b.id !== boxID);
     setBoxes(boxesCopy);
   }
-  // end addBox
-
-
 
   return (
     <div className="BoxList">
@@ -47,6 +42,6 @@ function BoxList() {
     </div>
   );
 };
-// end
+
 
 export default BoxList;
